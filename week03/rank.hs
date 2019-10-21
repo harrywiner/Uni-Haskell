@@ -24,5 +24,7 @@ rankBeats _ Jack   = False
 rankBeats Jack _   = True
 rankBeats (Numeric m) (Numeric n) = m > n
 
+
+
 --
 
