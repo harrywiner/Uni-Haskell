@@ -1,0 +1,17 @@
+size :: Tree -> Int
+size Leaf x = 1
+size Node a b = size a + size b
+
+depth :: Tree -> Int 
+depth Leaf x = 1
+depth Node a b = if ((depth a) > depth b)
+                 then (depth a) + 1
+                 else (depth b) + 1
+
+full :: Tree -> Bool
+full Node a b = size a == size b
+
+grow :: Int -> Tree
+grow 0 = Leaf 0
+grow x = Node grow (x - 1) grow (x - 1)
+

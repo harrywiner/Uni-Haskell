@@ -1,4 +1,8 @@
 
+choose :: Bool -> a -> b -> Either a b
+choose True a _ = (Left a)
+choose False _ b = (Right b)
+
 cloudCloud :: Double
 cloudCloud = 0.69
 

@@ -1,0 +1,81 @@
+Q2 a)
+
+Add (Val 4) (Add (Val 5) (Val 6))
+Add (Add (Val 7) (Val 8)) (Val 9)
+
+b) 
+eval :: Expr -> Int
+eval Val x = x
+eval Add a b = eval a + eval b
+
+c) 
+vals :: Expr -> [Int]
+vals Val x = [x]
+vals Add a b = (vals a) : (vals b)
+
+
+d) 
+foldExpr :: (Int -> b) -> (b -> b -> b) -> Expr -> b
+foldExpr f g (Val x) = (f x)
+foldExpr f g (Add i j) = g ((foldExpr f g i) (foldExpr f g j))
+
+e) 
+eval :: Expr -> Int
+eval = foldExpr (\x -> x) (+)
+
+f)
+data Expr = Val Int | Add Expr Expr | Mult Expr Expr
+
+foldExpr :: (Int -> b) -> (b -> b -> b) -> Expr -> b
+foldExpr f g (Val x) = (f x)
+foldExpr f g h (Add i j) = g ((foldExpr f g h i) (foldExpr f g h j))
+foldExpr f g h (Mult i j) = g ((foldExpr f g h i) (foldExpr f g h j))
+
+eval :: Expr -> Int
+eval = foldExpr (\x -> x) (+) (*
+
+
+g)
+
+factor :: Eval -> Eval
+factor (Add (Mult (Val x) b) (Mult (Val y) d)) = if (x == y)
+                                                 then (Mult (Val x) (Add b d))
+
+Q3 a)
+
+worth :: Char -> Int
+worth 'A' = 
+
+b) 
+
+i) 
+
+sum :: [Int] -> Int
+sum :: foldr (+) 0 
+
+ii) 
+length :: [a] -> Int
+length = foldr (\x -> x + 1) 0
+
+iii) 
+remove :: Eq => a -> [a] -> [a]
+remove x = foldr (f) [] 
+                where f y ys
+                    | x == y = ys
+                    | x != y = y : ys
+
+nub :: Eq a => [a] -> [a]
+nub = foldr (\ x ys -> x : remove x ys) []
+
+score :: [Char] -> Int
+score xs = sum.(map worth) xs * length(nub xs)
+
+more :: [Char] -> Int -> [[Char]] -> [Char]
+more xs n [] = xs
+more xs n (ys:yss) = if (n < (score ys))
+                     then more ys (score ys) yss
+                     else more xs n yss
+
+best :: [[Char]] -> [Char]
+best = more [] 0
+        

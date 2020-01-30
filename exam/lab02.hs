@@ -38,3 +38,10 @@ forget (Right y) = Just y
 safeDiv' :: Int -> Int -> Either String Int
 safeDiv' x 0 = Left "Err div by 0"
 safeDiv' x y = Right (div x y)
+
+polygon :: Int -> String
+polygon x 
+    | x <= 2 = "Wait a minute thats not a real shape"
+    | x == 3 = "Triangle"
+    | x == 4 = "Square, rhombus, rectangle please be more specific"
+    | x == 5 = "Pentagon"
